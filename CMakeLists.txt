@@ -10,6 +10,10 @@ pkg_check_modules(PC_HYPERSCAN REQUIRED IMPORTED_TARGET libhs)
 
 add_executable(main main.cpp)
 
+add_executable(regex_handler regex_handler.cpp)
+target_link_libraries(regex_handler hs)
+
+
 target_link_libraries(main 
     PkgConfig::PC_HYPERSCAN
     Boost::program_options
