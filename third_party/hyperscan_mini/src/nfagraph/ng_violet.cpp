@@ -375,7 +375,7 @@ void getSimpleRoseLiterals(const NGHolder &g, bool seeking_anchored,
 
         DEBUG_PRINTF("candidate is a candidate\n");
         scores[v] = score;
-        lit_info[v] = make_unique<VertLitInfo>(v, s, anchored);
+        lit_info[v] = ue2::make_unique<VertLitInfo>(v, s, anchored);
     }
 
     /* try to filter out cases where appending some characters produces worse
@@ -531,7 +531,7 @@ void getRegionRoseLiterals(const NGHolder &g, bool seeking_anchored,
         }
 
         DEBUG_PRINTF("candidate is a candidate\n");
-        lits->push_back(make_unique<VertLitInfo>(vv, s, anchored));
+        lits->push_back(ue2::make_unique<VertLitInfo>(vv, s, anchored));
     }
 }
 
@@ -1848,7 +1848,7 @@ static
 unique_ptr<NGHolder> make_chain(u32 count) {
     assert(count);
 
-    auto rv = make_unique<NGHolder>(NFA_INFIX);
+    auto rv = ue2::make_unique<NGHolder>(NFA_INFIX);
 
     NGHolder &h = *rv;
 
