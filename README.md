@@ -15,7 +15,7 @@ REQUIRED options:
   -b [ --binDatabase ] arg Path to regex file compressd to binary format or 
                            normal regex file (-r)
 ```
-For exampele to scan files from regex file and save compiled HS database run: `./build/main -b regexTest.bin -f test_tree -r regexTest.rgx`
+For example to scan files from regex file and save compiled HS database run: `./build/main -b regexTest.bin -f test_tree -r regexTest.rgx`
 
 ## Test file
 From the project root run 
