@@ -200,7 +200,7 @@ void findPaths(const NGHolder &g, CorpusProperties &cProps,
             if (boost::next(ai) == ae) {
                 new_path = std::move(p);
             } else {
-                new_path = make_unique<VertexPath>(*p);
+                new_path = ue2::make_unique<VertexPath>(*p);
             }
 
             new_path->push_back(v);
