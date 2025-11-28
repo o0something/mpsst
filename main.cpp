@@ -6,7 +6,7 @@
 #include "hs_regex_handler.h"
 #include "directory_scanner.h"
 #include "hs_file_scanner.h"
-#include "engineRegex.h"
+#include "engine_regex_handler.h"
 
 namespace po = boost::program_options;
 
@@ -64,12 +64,16 @@ int main(int argc, char* argv[]){
     // Optional debug / single file test
     //regex_handler.scan_file();
     //regex_handler.debug_scan_literal();
+    vector<string> rgxs_vector = regex_handler->get_regexs_vector();
+    for (int i = 0; i < regex_handler->get_regexs_vector_size(); i++) {
+        cout << rgxs_vector[i] << endl;
+    }
 
     hs_database_t *db = regex_handler->get_database();
     
     HSFileScanner fscanner(db);
     DirectoryScanner scanner(fscanner);
-    scanner.scan(root_path);
+    // scanner.scan(root_path);
 
     return 0;
 }
