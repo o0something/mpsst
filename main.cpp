@@ -69,9 +69,9 @@ int main(int argc, char* argv[]){
         cout << rgxs_vector[i] << endl;
     }
 
-    hs_database_t *db = regex_handler->get_database();
-    
-    HSFileScanner fscanner(db);
+    RegexDatabase db_variant = regex_handler->get_database();
+    HSFileScanner fscanner(db_variant);
+
     DirectoryScanner scanner(fscanner);
     scanner.scan(root_path);
 
