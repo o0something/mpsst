@@ -19,6 +19,9 @@ git clone https://github.com/PCRE2Project/pcre2.git
 cd pcre2/
 cmake -B build .
 cmake --build build
+```
+
+# Run 
 
 ## Arguments:
 ```
@@ -43,3 +46,5 @@ to run all tests
 From the project root run 
 `./test/test1.sh`
 to run test1
+
+# Docs
