@@ -24,12 +24,16 @@ to create test file (size 2GB)
 
 # Run tests
 From the project root run 
-`./test/all_tests.sh`
+`./test/unit_test/all_tests.sh`
 to run all tests
 
 From the project root run 
-`./test/test1.sh`
-to run test1
+`./test/unit_test/test1.sh`
+to run test1 (.rgx regex file)
+
+From the project root run
+`./test/unit_test/test2.sh`
+to run test2 (binary regex file)
 
 
 
