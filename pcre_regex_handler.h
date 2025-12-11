@@ -12,8 +12,7 @@ using namespace std;
 
 class PCRERegexHandler : public AbstractRegexHandler {
     private: 
-        RegexDatabase database = vector<pcre2_code*>{};
-
+        RegexDatabase database;
         int size;
         vector<string> rgxs_strings_vector;
     public:

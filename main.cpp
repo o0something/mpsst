@@ -50,7 +50,6 @@ int main(int argc, char* argv[]){
 
     EngineRegex engine(PCRE2);
     AbstractRegexHandler* regex_handler = engine.get_engine();
-    RegexDatabase db_variant = regex_handler->get_database();
     
     if(!regex_path.empty()){
         regex_handler->load_regex_file(regex_path);
@@ -69,6 +68,8 @@ int main(int argc, char* argv[]){
     for (string r : regex_handler->get_regexs_vector()) {
         cout << r << endl;
     }
+    RegexDatabase db_variant = regex_handler->get_database();
+
 
     vector<pcre2_code*> database;
     
