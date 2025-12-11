@@ -12,6 +12,7 @@ find_package(Boost REQUIRED COMPONENTS program_options)
 
 # Hyperscan from subtree
 add_subdirectory(third_party/hyperscan_mini) 
+add_subdirectory(pcre2)
 
 
 add_executable(main
@@ -20,6 +21,7 @@ add_executable(main
     src/dir_scanner/hs_dir_scanner.cpp
     src/regex_handler/hs_regex_handler.cpp
     src/regex_handler/regex_database.cpp
+    src/regex_handler/pcre_regex_handler.cpp
 )
 
 
@@ -28,6 +30,8 @@ target_link_libraries(main
     PRIVATE
         hs                  
         Boost::program_options
+        pcre2-8
+
 )
 
 

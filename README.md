@@ -30,3 +30,15 @@ to run all tests
 From the project root run 
 `./test/test1.sh`
 to run test1
+
+
+
+# for PCRE2
+
+FroFrom the project root run 
+
+```bash
+git clone https://github.com/PCRE2Project/pcre2.git
+cd pcre2/
+cmake -B build .
+cmake --build build/
