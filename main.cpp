@@ -1,6 +1,7 @@
 #include <boost/program_options/value_semantic.hpp>
 #include <iostream>
 #include <string>
+#include <chrono>
 #include <boost/program_options.hpp>
 
 #include "abstract_regex_handler.h"
@@ -11,8 +12,6 @@
 #include "engine_dir_scanner.h"
 #include "engine_file_scanner.h"
 
-#include "pcre_regex_handler.h"
-// #include "pcre_file_scanner.h"
 
 namespace po = boost::program_options;
 
@@ -21,7 +20,8 @@ int main(int argc, char* argv[]){
     desc.add_options()
         ("regex,r", po::value<std::string>(), "Path to regex file or binary database (-b)")
         ("file,f", po::value<std::string>(), "Path to the root of the files to search")
-        ("binDatabase,b", po::value<std::string>(), "Path to regex file compressd to binary format or normal regex file (-r)");
+        ("binDatabase,b", po::value<std::string>(), "Path to regex file compressd to binary format or normal regex file (-r)")
+        ("measureTime,t", "If the -t flag is passed, measure the program's execution time");
 
     po::variables_map vm;
     try {
@@ -49,6 +49,9 @@ int main(int argc, char* argv[]){
     }
 
     root_path  = vm["file"].as<std::string>();
+
+    chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+
 
     // EngineRegex engine(Hyperscan);
     Engine selected_engine = PCRE2;
@@ -90,6 +93,11 @@ int main(int argc, char* argv[]){
     AbstractDirScanner* scanner = engine_dir_scanner.get_engine();
 
     scanner->scan(root_path);
+
+    chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+    if (vm.count("measureTime")){
+        cout << "Time difference = " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << "[ms]" << std::endl;
+    }
 
     return 0;
 }
