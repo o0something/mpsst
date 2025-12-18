@@ -46,6 +46,8 @@ REQUIRED options:
                            normal regex file (-r)
   -t [ --measureTime ]     If the -t flag is passed, measure the program's 
                            execution time
+  -e [ --engine ] arg      Choose an engine type: hs (Hyperscan) or pcre, if none defult is
+                           pcre
 ```
 For example to scan files from regex file and save compiled HS database run: `./build/main -b regexTest.bin -f test_tree -r regexTest.rgx`
 
