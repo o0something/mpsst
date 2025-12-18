@@ -21,7 +21,8 @@ int main(int argc, char* argv[]){
         ("regex,r", po::value<std::string>(), "Path to regex file or binary database (-b)")
         ("file,f", po::value<std::string>(), "Path to the root of the files to search")
         ("binDatabase,b", po::value<std::string>(), "Path to regex file compressd to binary format or normal regex file (-r)")
-        ("measureTime,t", "If the -t flag is passed, measure the program's execution time");
+        ("measureTime,t", "If the -t flag is passed, measure the program's execution time")
+        ("engine,e", po::value<std::string>(), "Choose an engine type: hs (Hyperscan) or pcre (PCRE2), if none defult is pcre");
 
     po::variables_map vm;
     try {
@@ -52,9 +53,22 @@ int main(int argc, char* argv[]){
 
     chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
-
-    // EngineRegex engine(Hyperscan);
-    Engine selected_engine = PCRE2;
+   Engine selected_engine;
+    if (vm.count("engine")){
+        std::string engine_str = vm["engine"].as<std::string>();
+        if (engine_str == "hs" || engine_str == "hyperscan") {
+            selected_engine = Hyperscan;
+        } 
+        else if (engine_str == "pcre" || engine_str == "pcre2") {
+            selected_engine = PCRE2;
+        } 
+        else {
+            std::cerr << "Error wrong engine" << engine_str << "'.Available: hs, pcre.\n";
+            return 1; 
+        }
+    } else {
+        selected_engine = PCRE2; 
+    }
     EngineRegex engine(selected_engine);
     AbstractRegexHandler* regex_handler = engine.get_engine();
     
